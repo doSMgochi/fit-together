@@ -1,0 +1,89 @@
+# 모델2 방식 웹 어플리케이션 #
+
+ <광주광역시_공공체육시설 현황> 데이터를 기반으로 
+ 사용자들이 운동 모임이나 대회 같은 이벤트를 조직, 참여할 수 있는 기능을 제공코자 함.
+
+ 프로젝트 명 :  fit-together
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+STEP01 # 프로젝트 구축
+
+  ① Dynamic Web Project 만들고 (fit-together) 필수 library (servlet-api, jsp-api, ojdbc11, jstl, jstl-api ) 추가.
+
+  ② 지금 진행하는 프로젝트는 버전관리를 할테니 git init 시킨 후 
+     ignore 파일만들어서 *.class (혹은 build/ ) 추적안되게 설정해서 commit ( message "init" )
+ 
+  ( ②-① Git hub 에 repository 만들어서 여기까지의 작업 한 내용을 push )
+    
+  ③ Health Check ( /index 로 들어오는 요청을 처리 )
+     commit (message "health check")
+
+  ④ Git hub 에 repository 만들어서 여기까지의 작업 한 내용을 push 
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+STEP02 # 데이터베이스 구축 및 공공데이터 준비
+  ① 사용중인 데이터베이스에 fit-together 계정 준비 및 권한 설정
+     connect system >>
+       CREATE USER FIT_TOGETHER IDENTIFIED BY oracle;
+       GRANT CONNECT, RESOURCE, DBA TO FIT_TOGETHER;
+     >> disconnect system 
+
+     connect >> fit_together
+ 
+  ② 해당 계정(fit_together) 에 광주광역시_공공체육시설 현황_20221231.csv 를 저장할 수 있는 
+     테이블 설계 및 데이터 import
+
+     create table gyms (
+        id number(3, 0) primary key,
+        name varchar2(300),
+        type varchar2(30),
+        location varchar2(60),
+        owner varchar2(100),
+        manager varchar2(100)
+     );
+
+  ③ 사용자정보를 저장할 테이블  (users)
+   id(PK) / password / name / gender / birth / email / interest 
+
+  ③ 행사정보를 저장할 테이블 (events)
+   id (PK / number) / title / description / tag (varchar2) 
+      / gym_id (foreign key) / host_id (foreign key) / open_at (date)  / capacity / attendee / register_at (date)
+     ③-a 시퀀스 필요 (events_seq)
+ 
+  ④ 행사 참가자 정보를 저장할 테이블 (participants)
+    id (PK / number) , user_id, event_id, join_at
+     ④-a 시퀀스 필요 (participants_seq)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+STEP03 # MVC의 Model 구축
+  ① 만들어진 테이블의 데이터를 옮겨닮을 VO 
+  ② 해당 테이블의 데이터를 처리할 DAO 
+    - UserDao 에는 ,
+        "INSERT INTO USERS VALUES(?, ?, ?, ? , ?, ? , ?)"   
+        "SELECT * FROM USERS WHERE ID=?"
+
+    - GymDao 에는 ,
+          "SELECT DISTINCT TYPE FROM GYMS"
+          "SELECT * FROM GYMS WHERE TYPE=?"
+          "SELECT * FROM GYMS WHERE ID=?"     
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
