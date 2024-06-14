@@ -20,14 +20,16 @@ public class LoginHandleController extends HttpServlet {
 		try {
 			UserDao userDao = new UserDao();
 			User user = userDao.findById(id);
+
 			// 로그인 실패 시 실패화면 만들어주는 곳으로 보낼꺼고
 			if (user == null || !user.getPasword().equals(password)) {
 				request.getRequestDispatcher("/WEB-INF/view/login-error.jsp").forward(request, response);
 
 			} else {
 				request.getSession().setAttribute("authUser", user);
-				response.sendRedirect(request.getContextPath() + "/index");
+				response.sendRedirect(request.getContextPath()+"/index");
 			}
+			
 		} catch (Exception e) {
 			System.out.println(e);
 			request.getRequestDispatcher("/WEB-INF/view/login-error.jsp").forward(request, response);

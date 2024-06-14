@@ -37,16 +37,17 @@ public class SignupHandleController extends HttpServlet {
 				User one = new User(id, password, name, gender, birth, email,
 						String.join(",", interests));
 				result = userDao.save(one);
+				request.getSession().setAttribute("authUser", one);
+			}
+			if(result) {
+				response.sendRedirect(request.getContextPath()+"/index");
+			}else {
+				response.sendRedirect(request.getContextPath()+"/signup?error");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
-		if(result) {
-			response.sendRedirect(request.getContextPath()+"/login");
-		}else {
-			response.sendRedirect(request.getContextPath()+"/signup?error");
-		}
 		
 	}
 
