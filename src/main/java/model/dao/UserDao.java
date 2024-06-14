@@ -1,30 +1,33 @@
-package dao;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.vo.User;
 import oracle.jdbc.datasource.impl.OracleDataSource;
-import vo.User;
 
 public class UserDao {
+
+	// DB TABLE 에 insert 하는 작업도 메서드 화
 	public boolean save(User newUser) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
-		ods.setUser("users");
+		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 
 		try (Connection conn = ods.getConnection()) {
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?)");
-			stmt.setInt(1, newUser.getId());
-			stmt.setString(2, newUser.getName());
-			stmt.setString(3, newUser.getType());
-			stmt.setString(4, newUser.getRegion());
-			stmt.setString(5, newUser.getAgency());
-			stmt.setString(6, newUser.getManager());
-			
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO USERS VALUES (?, ?, ?, ?, ?, ?, ?)");
+			stmt.setString(1, newUser.getId());
+			stmt.setString(2, newUser.getPasword());
+			stmt.setString(3, newUser.getName());
+			stmt.setString(4, newUser.getGender());
+			stmt.setInt(5, newUser.getBirth());
+			stmt.setString(6, newUser.getEmail());
+			stmt.setString(7, newUser.getInterest());
+
 			int r = stmt.executeUpdate();
 
 			return r == 1 ? true : false;
@@ -34,27 +37,36 @@ public class UserDao {
 		}
 
 	}
-	
-	public User findByUserId(String userId) throws SQLException {
+
+	public User findById(String id) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
-		ods.setUser("users");
+		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 			// 식별키로 조회하고,
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USERS WHERE ID=?");
-			stmt.setString(1, userId);
+			stmt.setString(1, id);
 
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+				User user = new User();
+				user.setId(rs.getString("id"));
+				user.setPasword(rs.getString("password"));
+				user.setName(rs.getString("name"));
+				user.setGender(rs.getString("gender"));
+				user.setBirth(rs.getInt("birth"));
+				user.setEmail(rs.getString("email"));
+				user.setInterest(rs.getString("interest"));
+
+				return user;
 			} else {
 				return null;
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
 	}

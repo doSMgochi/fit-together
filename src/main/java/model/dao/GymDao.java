@@ -1,19 +1,19 @@
-package dao;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.vo.Gym;
 import oracle.jdbc.datasource.impl.OracleDataSource;
-import vo.Gym;
 
 public class GymDao {
 	
 	public Gym findByUserId(String userId) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
-		ods.setUser("GYMS");
+		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 			// 식별키로 조회하고,
@@ -37,7 +37,7 @@ public class GymDao {
 	public Gym findByType(String type) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
-		ods.setUser("GYMS");
+		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 			// 식별키로 조회하고,
@@ -61,7 +61,7 @@ public class GymDao {
 	public Gym findByTypeDistinct() throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
-		ods.setUser("GYMS");
+		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 			// 식별키로 조회하고,

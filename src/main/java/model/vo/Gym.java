@@ -1,6 +1,7 @@
-package vo;
+package model.vo;
 
-public class User {
+
+public class Gym {
 	int id;
 	String name;
 	String type;
@@ -8,10 +9,11 @@ public class User {
 	String agency;
 	String manager;
 	
-	public User() {
+	public Gym() {
 		super();
 	}
-	public User(int id, String name, String type, String region, String agency, String manager) {
+	
+	public Gym(int id, String name, String type, String region, String agency, String manager) {
 		super();
 		this.id = id;
 		this.name = name;
