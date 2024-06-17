@@ -114,43 +114,6 @@
 			</form>
 		</div>
 	</div>
-	
-	<h2 class="example-ttl">기존 체크박스</h2>
-    <div class="example-box">
-      <input type="checkbox" id="basic-check-1" checked />
-      <input type="checkbox" id="basic-check-2" />
-    </div>
-
-    <h2 class="example-ttl">커스텀 체크박스</h2>
-    <div class="example-box">
-      <div class="checkbox-wrap">
-        <input
-          class="custom-input"
-          type="checkbox"
-          id="custom-check-1"
-          checked
-        />
-        <label class="custom-label" for="custom-check-1">
-          <span class="material-symbols-outlined custom-label-checked">
-            check_box
-          </span>
-          <span class="material-symbols-outlined custom-label-unchecked">
-            check_box_outline_blank
-          </span>
-        </label>
-      </div>
-      <div class="checkbox-wrap">
-        <input class="custom-input" type="checkbox" id="custom-check-2" />
-        <label class="custom-label" for="custom-check-2">
-          <span class="material-symbols-outlined custom-label-checked">
-            check_box
-          </span>
-          <span class="material-symbols-outlined custom-label-unchecked">
-            check_box_outline_blank
-          </span>
-        </label>
-      </div>
-    </div>
 
 </body>
 </html>
