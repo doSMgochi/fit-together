@@ -250,3 +250,32 @@ hr.hr-13 {
 	justify-content: flex-end;
 	align-items: center
 }
+
+
+
+.example-ttl {
+	font-size: 18px;
+}
+
+.example-box {
+	border: 1px solid black;
+	padding: 20px;
+	display: flex;
+}
+
+/* 기존 체크박스를 숨기기 위한 코드 */
+.custom-input {
+	display: none;
+}
+/* 커스텀 체크박스를 위한 코드 */
+.custom-label .custom-label-checked {
+	display: none;
+}
+
+.custom-input:checked+.custom-label .custom-label-checked {
+	display: inline-block;
+}
+
+.custom-input:checked+.custom-label .custom-label-unchecked {
+	display: none;
+}

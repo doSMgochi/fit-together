@@ -23,30 +23,6 @@
 <body>
 	<hr class="hr-13" />
 	<div style="padding: 8px;">
-		<%-- banner / login & join shortcut / search --%>
-		<!--
-	<a class="neon" href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Neon button
-    </a>
-    <a class="neon" href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Neon button
-    </a>
-    <a class="neon" href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Neon button
-    </a>
--->
 		<div class="status-bar">
 			<%--banner  --%>
 			<div class="status-bar__column "></div>

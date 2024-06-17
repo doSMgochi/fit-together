@@ -16,15 +16,21 @@
 </c:choose>
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath }/css/style.css?<%=System.currentTimeMillis() %>" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+	rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-		<div>
-			<h1 class="text-center">핏투게더</h1>
+		<div class="wrap-sm text-center my-5 p-5">
+			<a href="${pageContext.servletContext.contextPath }/index"> <img
+				src="${pageContext.servletContext.contextPath }/image/main.png"
+				width="64" />
+			</a>
 		</div>
 		<div class="wrap-sm">
-			<h2>핏투게더 계정 만들기</h2>
-			<p class="fs-4">
+			<h2 class="text-center">핏투게더 계정 만들기</h2>
+			<p class="fs-4 text-center">
 				함께 건강하고 활동적인 생활을 시작해보세요! <br /> 지금 바로 가입하고, 당신에게 맞는 스포츠 활동을 찾아보세요.
 			</p>
 			<c:if test="${param.error != null }">
@@ -33,9 +39,8 @@
 					실패하였습니다. 다시 시도하세요.</div>
 			</c:if>
 			<form
-				action="${pageContext.servletContext.contextPath }/signup-handle" 
-				method="post"
-				>
+				action="${pageContext.servletContext.contextPath }/signup-handle"
+				method="post">
 				<div>
 					<label class="fs-3">계정아이디<span class="warning">(*)</span></label>
 					<div class="my-1">
@@ -109,6 +114,43 @@
 			</form>
 		</div>
 	</div>
+	
+	<h2 class="example-ttl">기존 체크박스</h2>
+    <div class="example-box">
+      <input type="checkbox" id="basic-check-1" checked />
+      <input type="checkbox" id="basic-check-2" />
+    </div>
+
+    <h2 class="example-ttl">커스텀 체크박스</h2>
+    <div class="example-box">
+      <div class="checkbox-wrap">
+        <input
+          class="custom-input"
+          type="checkbox"
+          id="custom-check-1"
+          checked
+        />
+        <label class="custom-label" for="custom-check-1">
+          <span class="material-symbols-outlined custom-label-checked">
+            check_box
+          </span>
+          <span class="material-symbols-outlined custom-label-unchecked">
+            check_box_outline_blank
+          </span>
+        </label>
+      </div>
+      <div class="checkbox-wrap">
+        <input class="custom-input" type="checkbox" id="custom-check-2" />
+        <label class="custom-label" for="custom-check-2">
+          <span class="material-symbols-outlined custom-label-checked">
+            check_box
+          </span>
+          <span class="material-symbols-outlined custom-label-unchecked">
+            check_box_outline_blank
+          </span>
+        </label>
+      </div>
+    </div>
 
 </body>
 </html>
