@@ -19,6 +19,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 	<div class="container">
@@ -94,18 +96,22 @@
 				<div>
 					<label class="fs-3">관심운동</label>
 					<div class="my-1 d-flex space-between">
-						<input type="checkbox" value="축구" id="soc" name="interest"><label
-							for="soc">축구</label> <input type="checkbox" value="수영" id="swm"
-							name="interest" /><label for="swm">수영</label> <input
-							type="checkbox" value="테니스" id="ten" name="interest" /><label
-							for="ten">테니스</label> <input type="checkbox" value="농구" id="bsk"
-							name="interest" /><label for="bsk">농구</label> <input
-							type="checkbox" value="피트니스" id="fit" name="interest" /><label
-							for="fit">피트니스</label> <input type="checkbox" value="육상" id="run"
-							name="interest" /><label for="run">육상</label> <input
-							type="checkbox" value="골프" id="glf" name="interest" /><label
-							for="glf">골프</label> <input type="checkbox" value="기타" id="etc"
-							name="interest" /><label for="etc">기타</label>
+						<input type="checkbox" value="축구" id="soc" name="interest"/>
+						<label for="soc"><i class="fa-solid fa-futbol"></i></label>
+						<input type="checkbox" value="수영" id="swm" name="interest"/>
+						<label for="swm"><i class="fa-solid fa-person-swimming"></i></label>
+						<input type="checkbox" value="탁구" id="ten" name="interest"/>
+						<label for="tat"><i class="fa-solid fa-table-tennis-paddle-ball"></i></label>
+						<input type="checkbox" value="농구" id="bsk" name="interest"/>
+						<label for="bsk"><i class="fa-solid fa-basketball"></i></label>
+						<input type="checkbox" value="자전거" id="fit" name="interest"/>
+						<label for="byc"><i class="fa-solid fa-bicycle"></i></label>
+						<input type="checkbox" value="육상" id="run" name="interest"/>
+						<label for="run"><i class="fa-solid fa-person-running"></i></label>
+						<input type="checkbox" value="야구" id="bsb" name="interest"/>
+						<label for="glf"><i class="fa-solid fa-baseball-bat-ball"></i></label>
+						<input type="checkbox" value="기타" id="etc" name="interest"/>
+						<label for="etc">기타</label>
 					</div>
 				</div>
 				<div class="my-5">

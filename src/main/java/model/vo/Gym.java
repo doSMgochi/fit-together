@@ -41,5 +41,29 @@ public class Gym {
 	public String getManager() {
 		return manager;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public void setAgency(String agency) {
+		this.agency = agency;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
 	
 }

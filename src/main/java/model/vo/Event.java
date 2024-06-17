@@ -63,5 +63,46 @@ public class Event {
 	public Date getRegisterAt() {
 		return registerAt;
 	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	public void setGymId(int gymId) {
+		this.gymId = gymId;
+	}
+
+	public void setHostId(String hostId) {
+		this.hostId = hostId;
+	}
+
+	public void setOpenAt(Date openAt) {
+		this.openAt = openAt;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setCur(int cur) {
+		this.cur = cur;
+	}
+
+	public void setRegisterAt(Date registerAt) {
+		this.registerAt = registerAt;
+	}
 	
 }

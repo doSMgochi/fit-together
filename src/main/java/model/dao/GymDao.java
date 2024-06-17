@@ -4,79 +4,95 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.vo.Gym;
 import oracle.jdbc.datasource.impl.OracleDataSource;
 
 public class GymDao {
 	
-	public Gym findByUserId(String userId) throws SQLException {
+	public Gym findById(int id) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
-			// 식별키로 조회하고,
+
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM GYMS WHERE ID=?");
-			stmt.setString(1, userId);
-
+			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-
 			if (rs.next()) {
-				return new Gym(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+				Gym one = new Gym();
+
+				one.setId(rs.getInt("id"));
+				one.setName(rs.getString("name"));
+				one.setType(rs.getString("type"));
+				one.setRegion(rs.getString("region"));
+				one.setAgency(rs.getString("agency"));
+				one.setManager(rs.getString("manager"));
+				return one;
 			} else {
 				return null;
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Gym findByType(String type) throws SQLException {
+	public List<Gym> findByType(String type) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
-			// 식별키로 조회하고,
+
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM GYMS WHERE TYPE=?");
 			stmt.setString(1, type);
 			
+			
 			ResultSet rs = stmt.executeQuery();
-			
-			if (rs.next()) {
-				return new Gym(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
-			} else {
-				return null;
+			List<Gym> gyms = new ArrayList<Gym>();
+			while (rs.next()) {
+				Gym one = new Gym();
+
+				one.setId(rs.getInt("id"));
+				one.setName(rs.getString("name"));
+				one.setType(rs.getString("type"));
+				one.setRegion(rs.getString("region"));
+				one.setAgency(rs.getString("agency"));
+				one.setManager(rs.getString("manager"));
+				gyms.add(one);
 			}
-			
+
+			return gyms;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Gym findByTypeDistinct() throws SQLException {
+	public List<String> findDistinctType() throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
-			// 식별키로 조회하고,
-			PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT TYPE FROM GYMS");
-			
+
+			PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT TYPE FROM GYMS ");
+
 			ResultSet rs = stmt.executeQuery();
-			
-			if (rs.next()) {
-				return new Gym(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
-			} else {
-				return null;
+			List<String> types = new ArrayList<>();
+			while (rs.next()) {
+				String type = rs.getString("type");
+				types.add(type);
 			}
-			
+
+			return types;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
 	}

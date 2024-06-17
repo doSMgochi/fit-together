@@ -4,79 +4,63 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.vo.Participants;
 import oracle.jdbc.datasource.impl.OracleDataSource;
 
 public class ParticipantDao {
-	public boolean save(Participants newParticipant) throws SQLException {
+	public boolean save(Participants participant) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
-
 		try (Connection conn = ods.getConnection()) {
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO PARTICIPANTS VALUE (PARTICIPANTS_SEQ.NEXTVAL,  ?, ?, ?)");
-			stmt.setInt(1, newParticipant.getId());
-			stmt.setString(2, newParticipant.getUserId());
-			stmt.setDate(3, newParticipant.getJoinAt());
-			
+			PreparedStatement stmt = conn
+					.prepareStatement("INSERT INTO PARTICIPANTS VALUES (PARTICIPANTS_SEQ.NEXTVAL, ?, ?, ?)");
+			stmt.setString(1, participant.getUserId());
+			stmt.setInt(2, participant.getEventId());
+			stmt.setDate(3, participant.getJoinAt());
+
 			int r = stmt.executeUpdate();
 
 			return r == 1 ? true : false;
+
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return false;
 		}
-
 	}
-	
-	public Participants findByParticipantsEventId(String eventId) throws SQLException {
+
+	public List<Participants> findByEventId(int eventId) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
-			// 식별키로 조회하고,
-			PreparedStatement stmt = conn.prepareStatement("SELECT * PARTICIPANTS WHERE EVENT_ID=?");
-			stmt.setString(1, eventId);
+
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM PARTICIPANTS WHERE EVENT_ID=?");
+			stmt.setInt(1, eventId);
 
 			ResultSet rs = stmt.executeQuery();
+			List<Participants> participants = new ArrayList<>();
+			while (rs.next()) {
+				Participants one = new Participants();
 
-			if (rs.next()) {
-				return new Participants(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4));
-			} else {
-				return null;
+				one.setId(rs.getInt("id"));
+				one.setUserId(rs.getString("user_id"));
+				one.setEventId(rs.getInt("event_id"));
+				one.setJoinAt(rs.getDate("join_at"));
+				participants.add(one);
 			}
 
+			return participants;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	public Participants findByParticipantsUserId(String userId) throws SQLException {
-		OracleDataSource ods = new OracleDataSource();
-		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
-		ods.setUser("fit_together");
-		ods.setPassword("oracle");
-		try (Connection conn = ods.getConnection()) {
-			// 식별키로 조회하고,
-			PreparedStatement stmt = conn.prepareStatement("SELECT * PARTICIPANTS WHERE USER_ID=?");
-			stmt.setString(1, userId);
 
-			ResultSet rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				return new Participants(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4));
-			} else {
-				return null;
-			}
-
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
 }
