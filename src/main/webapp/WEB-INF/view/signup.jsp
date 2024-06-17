@@ -23,11 +23,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+<%@ include file="./nav.jsp" %>
 	<div class="container">
 		<div class="wrap-sm text-center my-5 p-5">
-			<a href="${pageContext.servletContext.contextPath }/index"> <img
-				src="${pageContext.servletContext.contextPath }/image/main.png"
-				width="64" />
+			<a href="${pageContext.servletContext.contextPath }/index">
 			</a>
 		</div>
 		<div class="wrap-sm">

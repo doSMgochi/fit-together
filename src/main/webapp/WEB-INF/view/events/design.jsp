@@ -16,16 +16,21 @@
 </c:choose>
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath }/css/style.css?<%=System.currentTimeMillis() %>" />
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-	<div class="container px-1">
-		<div class="my-3">
-			로그온 메뉴바 들어갈 자리
+<%@ include file="../nav.jsp" %>
+	<div class="container px-1 text-center">
+		<div class="my-4">
+			<a class="hover-em a" href="${pageContext.servletContext.contextPath }/events/design">새 행사 등록</a> &gt; <span class="warning">체육시설 선택</span>
 		</div>
-		<div >
-			<span>체육행사등록</span> &gt; <span class="warning">체육시설 선택</span>
+		<div>
+		<i class="fa-solid fa-splotch" style="color: gray ; font-size: 0.5em"></i>
+		<i class="fa-solid fa-splotch" style="color: rgb(151, 122, 102); font-size: 0.5em"></i>
+		<i class="fa-solid fa-splotch" style="color: gray; font-size: 0.5em"></i>
 		</div>
-		<h2 class="my-2">시작하기: 체육시설 선택</h2>
+		<h2 class="my-6">시작하기: 체육시설 선택</h2>
 		<p>
 			원하는 <span class="warning">체육시설</span>을 선택하고 자세한 정보를 입력하세요.
 		</p>
@@ -35,7 +40,8 @@
 					<option>${one }</option>
 				</c:forEach>			
 			</select>
-			<button type="submit" class="p-2 border-rounded fs-3">선 택</button>
+			<br/>
+			<button class="btn" type="submit" style="width: 181px ; height:55px ;margin-top: 40px"><span><i class="fa-solid fa-basketball fa-pulse"></i> 선택</span></button>
 		</form>
 		
 	</div>

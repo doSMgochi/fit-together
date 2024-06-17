@@ -18,6 +18,7 @@
 	href="${pageContext.servletContext.contextPath }/css/style.css?<%=System.currentTimeMillis() %>" />
 </head>
 <body>
+<%@ include file="../nav.jsp" %>
 	<div class="container px-1">
 		<div class="my-3">로그온 메뉴바 들어갈 자리</div>
 		<div class="border-rounded p-2 text-center">
@@ -44,12 +45,8 @@
 				<c:forEach var="one" items="${participants }">
 				<li><div>${one.userId } - ${one.joinAt } 에 참가신청</div></li>
 				</c:forEach>
-
 			</ul>
-
 		</div>
-
-
 	</div>
 </body>
 </html>

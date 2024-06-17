@@ -18,10 +18,10 @@
 	href="${pageContext.servletContext.contextPath }/css/style.css?<%=System.currentTimeMillis() %>" />
 </head>
 <body>
+<%@ include file="./nav.jsp" %>
 	<div class="container">
 		<div class="wrap-sm text-center my-5 p-5">
 			<a href="${pageContext.servletContext.contextPath }/index">
-				<img src="${pageContext.servletContext.contextPath }/image/main.png" width="64"/>
 			</a>
 		</div>
 		<div class="wrap-x-sm">

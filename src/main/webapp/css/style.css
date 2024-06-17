@@ -12,6 +12,18 @@
 
 a {
 	text-decoration: none;
+	color: gray;
+}
+
+/* hide scrollbar but allow scrolling */
+html {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll; 
+}
+
+html::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 /* 영역 사이즈 클래스 */
@@ -76,7 +88,7 @@ a {
 
 /* 글씨 색상 클래스 */
 .warning {
-	color: orangered;
+	color: rgb(169, 116, 80);
 }
 
 .fs-1 {
@@ -191,6 +203,10 @@ a {
 	margin: 20px auto;
 }
 
+.my-6 {
+	margin: 40px auto;
+}
+
 .underscore {
 	border-bottom: 2px solid lightgray;
 }
@@ -249,4 +265,61 @@ hr.hr-13 {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center
+}
+
+.hover-em {
+	font-size: 1em;
+}
+
+.hover-em:hover {
+	font-size: 1.05em;
+}
+
+.button_container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+}
+
+.btn {
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: gray;
+  padding: 17px 60px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #CBB4AF;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }

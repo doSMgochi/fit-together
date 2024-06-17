@@ -19,6 +19,7 @@
 
 </head>
 <body>
+<%@ include file="../nav.jsp" %>
 체육행사정보가 등록되었습니다.
 </body>
 </html>

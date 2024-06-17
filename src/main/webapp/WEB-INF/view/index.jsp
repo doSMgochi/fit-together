@@ -25,56 +25,7 @@
 	rel="stylesheet">
 </head>
 <body>
-	<hr class="hr-13" />
-	<div style="padding: 8px;">
-		<div class="status-bar">
-			<%--banner  --%>
-			<div class="status-bar__column "></div>
-			<div class="status-bar__column status-bar__column:nth-child(2)">
-				<a class="no-deco-link title-font"
-					style="font-size: 60px; font-weight: bold;" href="">핏 투 게 더</a>
-			</div>
-			<c:choose>
-				<c:when test="${sessionScope.authUser == null}">
-					<div class="status-bar__column status-bar__column:last-child">
-						<a href="${pageContext.servletContext.contextPath }/signup"
-							class="no-deco-link fs-small"><i class="fa-solid fa-seedling"
-							style="color: gray"></i> 회원가입</a> | <a
-							href="${pageContext.servletContext.contextPath }/login"
-							class="no-deco-link fs-small"><i
-							class="fa-solid fa-user-large" style="color: gray"></i> 로그인</a>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="status-bar__column status-bar__column:last-child">
-						<a href="${pageContext.servletContext.contextPath }/logout"
-							class="no-deco-link fs-small"><i
-							class="fa-solid fa-user-large" style="color: gray"></i>
-							${sessionScope.authUser.name }님 로그아웃</a> | <a href=""
-							class="no-deco-link fs-small"><i class="fa-solid fa-file-pen"
-							style="color: gray"></i> 정보수정</a>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<%-- shortcut  링크 --%>
-		<hr class="hr-1" style="margin-top: 40px">
-		<div
-			style="display: flex; align-items: center; justify-content: space-around; margin-top: 15px; margin-bottom: 15px">
-			<div>
-				<a href="${pageContext.servletContext.contextPath }/events/design"
-					class="shortcut">새 행사 등록</a>
-			</div>
-			<div>
-				<a href="" class="shortcut">TYPE#2</a>
-			</div>
-			<div>
-				<a href="" class="shortcut">TYPE#3</a>
-			</div>
-		</div>
-
-
-		<hr class="hr-1" />
+<%@ include file="./nav.jsp" %>
 		<div class="container"
 			style="display: flex; justify-content: space-around; margin-top: 15px; margin-bottom: 15px">
 			<div class="enlargement neon">
@@ -95,14 +46,6 @@
 			</div>
 
 		</div>
-	</div>
-	<div class="wrap-sm text-center my-5 p-5" style="margin-top: 200px">
-		<a style="cursor: default;"
-			href="${pageContext.servletContext.contextPath }/index"> <img
-			src="${pageContext.servletContext.contextPath }/image/footer.jpg"
-			width="500" />
-		</a>
-	</div>
-	<hr class="hr-1" style="margin-top: 10px">
+	
 </body>
 </html>
