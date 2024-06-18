@@ -27,7 +27,8 @@ public class LoginHandleController extends HttpServlet {
 
 			} else {
 				request.getSession().setAttribute("authUser", user);
-				response.sendRedirect(request.getContextPath()+"/index");
+				String redirectUrl = (String)request.getSession().getAttribute("redirectUrl");
+				response.sendRedirect(request.getContextPath()+ redirectUrl);
 			}
 			
 		} catch (Exception e) {

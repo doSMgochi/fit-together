@@ -14,16 +14,20 @@ import model.dao.GymDao;
 public class EventsDesignController extends HttpServlet {
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse respsonse)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (request.getSession().getAttribute("authUser") == null) {
+			response.sendRedirect(request.getContextPath() + "/login?url=/events/design");
+			return;
+		}
 
 		try {
 			GymDao gymDao = new GymDao();
 			List<String> types = gymDao.findDistinctType();
 			request.setAttribute("types", types);
-			request.getRequestDispatcher("/WEB-INF/view/events/design.jsp").forward(request, respsonse);
+			request.getRequestDispatcher("/WEB-INF/view/events/design.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.getRequestDispatcher("/WEB-INF/view/events/error.jsp").forward(request, respsonse);
+			request.getRequestDispatcher("/WEB-INF/view/events/error.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 

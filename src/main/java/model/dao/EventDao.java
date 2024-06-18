@@ -71,7 +71,7 @@ public class EventDao {
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM EVENTS ORDER BY OPEND_AT ASC");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM EVENTS ORDER BY OPEN_AT ASC");
 
 			ResultSet rs = stmt.executeQuery();
 			List<Event> events = new ArrayList<Event>();
@@ -105,7 +105,7 @@ public class EventDao {
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 
-			PreparedStatement stmt = conn.prepareStatement("select * from events where tag=? order by open_date");
+			PreparedStatement stmt = conn.prepareStatement("select * from events where tag=? order by open_at");
 			stmt.setString(1, tag);
 
 			ResultSet rs = stmt.executeQuery();
@@ -166,6 +166,26 @@ public class EventDao {
 			return null;
 		}
 
+	}
+	
+	public boolean increaseCurrentById(int id) throws Exception {
+		OracleDataSource ods = new OracleDataSource();
+		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
+		ods.setUser("fit_together");
+		ods.setPassword("oracle");
+		
+		try (Connection conn = ods.getConnection()) {
+			PreparedStatement stmt;
+				stmt = conn.prepareStatement("UPDATE EVENTS SET CUR = CUR + 1 WHERE ID=?");
+				stmt.setInt(1, id);
+			
+			int r = stmt.executeUpdate();
+			
+			return r == 1 ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

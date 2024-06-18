@@ -15,6 +15,10 @@ import model.vo.Gym;
 public class EventsNewController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getSession().getAttribute("authUser") == null) {
+			response.sendRedirect(request.getContextPath() + "/login?url=/events/new");
+			return;
+		}
 		try {
 			String type = request.getParameter("type");
 			GymDao gymDao = new GymDao();

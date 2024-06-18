@@ -32,6 +32,11 @@ html::-webkit-scrollbar {
 	margin: auto;
 }
 
+.wrap-l {
+	width: 960px;
+	margin: auto;
+}
+
 .wrap-md {
 	width: 720px;
 	margin: auto;
@@ -322,4 +327,31 @@ hr.hr-13 {
 .btn:hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.item {
+	box-shadow: 1px 2px 4px 1px lightgray;
+}
+*/
+.item:hover {
+	background-color: #eee;
+}
+
+.badge-warning {
+	background-color:  grey;
+	color: white;
+	padding : 4px 8px;
+	border-radius: 4px;
+}
+.badge-dark {
+	background-color:  silver;
+	color: white;
+	padding : 4px 8px;
+	border-radius: 4px;
 }

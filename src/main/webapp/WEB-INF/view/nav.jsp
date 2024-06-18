@@ -66,7 +66,7 @@
 					class="a">새 행사 등록</a>
 			</div>
 			<div>
-				<a href="" class="a">TYPE#2</a>
+				<a href="${pageContext.servletContext.contextPath }/events" class="a">행사 목록</a>
 			</div>
 			<div>
 				<a href="" class="a">TYPE#3</a>
