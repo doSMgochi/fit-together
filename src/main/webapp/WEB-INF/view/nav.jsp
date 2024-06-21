@@ -69,15 +69,20 @@
 				<a href="${pageContext.servletContext.contextPath }/events" class="a">행사 목록</a>
 			</div>
 			<div>
-				<a href="" class="a">TYPE#3</a>
+			<!-- 게시판 들어갈 자리 -->
+				<a href="${pageContext.servletContext.contextPath }/gyms" class="a">체육시설</a>
+			</div>
+			<div>
+			<!-- 게시판 들어갈 자리 -->
+				<a href="${pageContext.servletContext.contextPath }/boards" class="a">게시판</a>
 			</div>
 		</div>
 
 
 		<hr class="hr-1" />
 		</div>
-		
-		<div class="wrap-sm text-center my-5 p-5" style="position: absolute; bottom: -25% ; width: 100% ;">
+		<!-- 아마 gap? 을 이용해서 처리할 수 있을 것 같은데 반응형으로 위치가 달라질 수 있게 변경 -->
+		<div class="wrap-sm text-center my-5 p-5" style="position: absolute; bottom: -55% ; width: 100% ;">
 		<a style="cursor: default;"
 			href="${pageContext.servletContext.contextPath }/index"> <img
 			src="${pageContext.servletContext.contextPath }/image/footer.jpg"

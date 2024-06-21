@@ -25,27 +25,61 @@
 	rel="stylesheet">
 </head>
 <body>
-<%@ include file="./nav.jsp" %>
-		<div class="container"
-			style="display: flex; justify-content: space-around; margin-top: 15px; margin-bottom: 15px">
-			<div class="enlargement neon">
-				<span></span> <span></span> <span></span> <span></span> <b
-					class="underscore">공지사항</b>
-			</div>
-			<div class="enlargement neon">
-				<span></span> <span></span> <span></span> <span></span> <b
-					class="underscore">대회일정</b>
-			</div>
-			<div class="enlargement neon">
-				<span></span> <span></span> <span></span> <span></span> <b
-					class="underscore">질문/답변</b>
-			</div>
-			<div class="enlargement neon">
-				<span></span> <span></span> <span></span> <span></span> <b
-					class="underscore">자유게시판</b>
-			</div>
+	<%@ include file="./nav.jsp"%>
+	<!-- 작업이 끝난 뒤, 메인 레이아웃 구성 -->
+	<div class="container"
+		style="display: flex; justify-content: space-around; margin-top: 15px; margin-bottom: 15px">
 
+		<div class="enlargement neon">
+			<span></span> <span></span> <span></span> <span></span> <b
+				class="underscore"><a
+				href="${pageContext.servletContext.contextPath }/boards?category=announcement"><b
+					class="a" style="font-weight: bold">공지사항</b></a></b>
+			<ul style="list-style: none; padding-left: 0px">
+				<c:forEach items="${announcement }" var="one">
+					<li class="fs-7"><a
+						href="${pageContext.servletContext.contextPath }/boards/${one.id}">${one.title }</a></li>
+				</c:forEach>
+			</ul>
 		</div>
-	
+		<div class="enlargement neon">
+			<span></span> <span></span> <span></span> <span></span> <b
+				class="underscore"><a
+				href="${pageContext.servletContext.contextPath }/boards?category=schedule"><b
+					class="a" style="font-weight: bold">대회일정</b></a></b>
+			<ul style="list-style: none; padding-left: 0px">
+				<c:forEach items="${schedule }" var="one">
+					<li class="fs-7"><a
+						href="${pageContext.servletContext.contextPath }/boards/${one.id}">${one.title }</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="enlargement neon">
+			<span></span> <span></span> <span></span> <span></span> <b
+				class="underscore"><a
+				href="${pageContext.servletContext.contextPath }/boards?category=qna"><b
+					class="a" style="font-weight: bold">질문/답변</b></a></b>
+			<ul style="list-style: none; padding-left: 0px">
+				<c:forEach items="${qna }" var="one">
+					<li class="fs-7"><a
+						href="${pageContext.servletContext.contextPath }/boards/${one.id}">${one.title }</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="enlargement neon">
+			<span></span> <span></span> <span></span> <span></span> <b
+				class="underscore"><a
+				href="${pageContext.servletContext.contextPath }/boards?category=freeboard"><b
+					class="a" style="font-weight: bold">자유게시판</b></a></b>
+			<ul style="list-style: none; padding-left: 0px">
+				<c:forEach items="${freeboard }" var="one">
+					<li class="fs-7"><a
+						href="${pageContext.servletContext.contextPath }/boards/${one.id}">${one.title }</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+
+	</div>
+
 </body>
 </html>

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.vo.Participants;
+import model.vo.Statistics;
 import oracle.jdbc.datasource.impl.OracleDataSource;
 
 public class ParticipantDao {
@@ -57,6 +58,38 @@ public class ParticipantDao {
 			}
 
 			return participants;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<Statistics> findStatisticsByEventId(int eventId) throws SQLException {
+		OracleDataSource ods = new OracleDataSource();
+		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
+		ods.setUser("fit_together");
+		ods.setPassword("oracle");
+		try (Connection conn = ods.getConnection()) {
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"SELECT P.ID, P.USER_ID, U.AGE, U.AGECOUNT, U.GENDER, P.EVENT_ID, P.JOIN_AT FROM (SELECT 2025-BIRTH AGE, COUNT(2025-BIRTH) AGECOUNT, GENDER, ID FROM USERS GROUP BY BIRTH, GENDER, ID ORDER BY BIRTH) U JOIN PARTICIPANTS P ON U.ID = P.USER_ID WHERE P.EVENT_ID = ?");
+			stmt.setInt(1, eventId);
+
+			ResultSet rs = stmt.executeQuery();
+			List<Statistics> statistics = new ArrayList<>();
+			while (rs.next()) {
+				Statistics one = new Statistics();
+
+				one.setParticipantsId(rs.getInt("id"));
+				one.setUserId(rs.getString("user_id"));
+				one.setAge(rs.getInt("age"));
+				one.setAgeCount(rs.getInt("agecount"));
+				one.setGender(rs.getString("gender"));
+				one.setJoinAt(rs.getDate("join_at"));
+				statistics.add(one);
+			}
+
+			return statistics;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

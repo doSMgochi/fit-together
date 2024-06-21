@@ -36,14 +36,15 @@ public class CommentDao {
 		}
 	}
 	
-	public List<Comment> findAll() throws SQLException {
+	public List<Comment> findAll(int eventId) throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//13.124.229.167:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
 
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Comments ORDER BY ID DESC");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Comments where event_id=? ORDER BY ID DESC");
+			stmt.setInt(1, eventId);
 
 			ResultSet rs = stmt.executeQuery();
 			List<Comment> comments = new ArrayList<>();

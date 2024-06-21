@@ -10,6 +10,13 @@
 	font-weight: lighter;
 }
 
+body {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
 a {
 	text-decoration: none;
 	color: gray;
@@ -27,6 +34,7 @@ html::-webkit-scrollbar {
 }
 
 /* 영역 사이즈 클래스 */
+
 .container {
 	width: 1140px;
 	margin: auto;
@@ -118,6 +126,9 @@ html::-webkit-scrollbar {
 
 .fs-6 {
 	font-size: 0.65rem;
+}
+.fs-7 {
+	font-size: 0.9rem;
 }
 /* 글씨 색상 */
 
@@ -225,8 +236,8 @@ html::-webkit-scrollbar {
 }
 
 .enlargement {
-	width: 250px;
-	height: 200px;
+	width: 220px;
+	height: 177px;
 	padding: 10px;
 	border: 2px solid lightgray;
 	margin-top: 40px;
@@ -235,7 +246,7 @@ html::-webkit-scrollbar {
 }
 
 .enlargement:hover {
-	height: 300px;
+	height: 285px;
 }
 
 hr.hr-1 {
@@ -354,4 +365,16 @@ input::-webkit-inner-spin-button {
 	color: white;
 	padding : 4px 8px;
 	border-radius: 4px;
+}
+
+.comtit {
+	text-decoration-line: underline;
+	text-decoration-thickness: 3px;
+	text-decoration-color: gray;
+	text-underline-position : under;
+	
+}
+
+.none-deco {
+	all: unset;
 }

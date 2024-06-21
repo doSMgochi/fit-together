@@ -45,10 +45,39 @@
 						class="p-2 fs-4 border-rounded">참가신청</button></a>
 			</c:if>
 		</div>
-		<div style="text-align: right">
-		<a href="${pageContext.servletContext.contextPath }/events/${event.id}?tab=comments"><button>댓글보기</button></a>
+		<div style="text-align: center">
+			<!-- 아이콘 조금 더 명시적으로 변경 -->
+			<a
+				href="${pageContext.servletContext.contextPath }/events/${event.id}"><button
+					class="none-deco" style="cursor: pointer; color: gray">
+					<i class="fa-regular fa-file-lines" style="font-size: 1.75em"></i>
+				</button></a> | <a
+				href="${pageContext.servletContext.contextPath }/events/${event.id}?tab=comments"><button
+					class="none-deco" style="cursor: pointer; color: gray">
+					<i class="fa-regular fa-comment" style="font-size: 1.75em"></i>
+				</button></a>
 		</div>
 		<h3 class="my-2">참가자들(${event.cur })</h3>
+		<!-- 참가자 통계, 나중에 css 애니메이션 그래프로 변경 -->
+		<div>
+			<div id="minwon-bar" class="progress-bar">
+				<div class="progress"></div>
+			</div>
+			<div class="progress-bar2"></div>
+			<div class="progress-bar3"></div>
+			<div class="donut-container">
+				<div class="donut"></div>
+			</div>
+			<div class="donut-container">
+				<div class="donut"></div>
+			</div>
+			<span style="font-weight: bold; margin-left: 10px"> 참가자 평균 연령</span>
+			: ${avgAge } 세 <br />
+			<span style="font-weight: bold; margin-left: 10px"> 참가자 성별 비율</span><br />
+			<span style="margin-left: 10px"> 남자 : ${male } , 여자 : ${female }
+			</span>
+
+		</div>
 		<div>
 			<ul style="list-style: none">
 				<li><c:forEach items="${participants }" var="one">

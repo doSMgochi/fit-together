@@ -45,25 +45,41 @@
 						class="p-2 fs-4 border-rounded">참가신청</button></a>
 			</c:if>
 		</div>
-		<div style="text-align: right">
-		<a href="${pageContext.servletContext.contextPath }/events/${event.id}"><button>본문보기</button></a>
+		<div style="text-align: center">
+		<!-- 아이콘 조금 더 명시적으로 변경 -->
+			<a
+				href="${pageContext.servletContext.contextPath }/events/${event.id}"><button
+					class="none-deco" style="cursor: pointer; color: gray">
+					<i class="fa-regular fa-file-lines" style="font-size: 1.75em"></i>
+				</button></a> | <a
+				href="${pageContext.servletContext.contextPath }/events/${event.id}?tab=comments"><button
+					class="none-deco" style="cursor: pointer; color: gray">
+					<i class="fa-regular fa-comment" style="font-size: 1.75em"></i>
+				</button></a>
 		</div>
 		<div class="my-4">
-			댓글쓰기 ${commentCount }
-			<form action="${pageContext.servletContext.contextPath }/events/comments">
-			<input type="hidden" name="eventId" value="${event.id }"/>
+			댓글쓰기
+			<form
+				action="${pageContext.servletContext.contextPath }/events/comments">
+				<input type="hidden" name="eventId" value="${event.id }" />
 				<textarea class="w-100  p-2 border-rounded fs-5" name="comments"
-					style="height: 80px; resize: none"></textarea>
-					<div class="my-1">
-					<button class="btn" type="submit" style="width: 181px ; height:55px ;margin-top: 40px"><span>전송</span></button>
-			</div>
+					style="height: 100px; resize: none; margin-top: 10px"></textarea>
+				<div class="my-4" style="margin-bottom: 50px">
+					<button class="btn" type="submit"
+						style="width: 181px; height: 55px; margin-top: 40px">
+						<span>전송</span>
+					</button>
+				</div>
 			</form>
-				<c:forEach items="${printComment }" var="one">
-				<p>
-				작성자 : ${one.userId }
-				내용 : ${one.body }
-				</p>
-				</c:forEach>
+			댓글목록 ${commentCount }
+			<c:forEach items="${printComment }" var="one">
+				<div class="border-rounded p-1 item my-2"
+					style="height: 100px; padding-left: 15px">
+					<i class="fa-regular fa-comment"></i> <span class="comtit fs-3"
+						style="font-weight: bold"> ${one.userId }</span><br /> <span
+						class="fs-4">${one.body }</span>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </body>

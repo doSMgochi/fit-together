@@ -24,6 +24,10 @@ public class EventsController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (request.getSession().getAttribute("authUser") == null) {
+			response.sendRedirect(request.getContextPath() + "/login?url=/events");
+			return;
+		}
 		try {
 			// 파라미터 뽑을 것 있는지..? 세션 뽑을 것 있는지..?
 			User authUser = (User)request.getSession().getAttribute("authUser");
@@ -63,7 +67,7 @@ public class EventsController extends HttpServlet {
 			}
 			
 			request.setAttribute("events", detailList);
-			
+			request.setAttribute("tagCounts", eventDao.tagCounting());
 			
 
 			

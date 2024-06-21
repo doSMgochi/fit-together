@@ -31,10 +31,7 @@ public class EventsCommentController extends HttpServlet {
 			List<Comment> comment = new ArrayList<Comment>();
 			comment.add(c);
 			// 이부분! 리다이렉트를 하면 안 찍히는 듯 함
-			List<Comment> printComment = commentDao.findAll();
-			int commentCount = printComment.size();
-			request.setAttribute("commentCount", commentCount);
-			request.setAttribute("printComment", printComment);
+			
 			response.sendRedirect(request.getContextPath() + "/events/"+eventId+"?tab=comments");
 		} catch (Exception e) {
 			e.printStackTrace();

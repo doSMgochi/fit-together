@@ -24,14 +24,30 @@
 	<div class="wrap-l px-1 text-center">
 		<div class="my-4">
 			<a class="hover-em a"
-				href="${pageContext.servletContext.contextPath }/events/design">새
-				행사 등록</a> &gt; <span class="warning">체육시설 선택</span>
+				href="${pageContext.servletContext.contextPath }/events">행사 목록</a> &gt; <span class="warning">전체 행사 목록</span>
 		</div>
 		<div>
 			<i class="fa-solid fa-splotch" style="color: gray; font-size: 0.5em"></i>
 			<i class="fa-solid fa-splotch"
 				style="color: rgb(151, 122, 102); font-size: 0.5em"></i> <i
 				class="fa-solid fa-splotch" style="color: gray; font-size: 0.5em"></i>
+		</div>
+		<div style="display: flex; align-items:center; justify-content: space-between;">
+			<div>
+			<!-- 카테고리별로 뜨는게 달라질 수 있게 변경 -->
+				<i class="fa-solid fa-thumbtack"></i> CATEGORY |
+				<c:forEach items="${tagCounts }" var="one">
+					<button class="badge-warning" style="border: 2px solid lightgray">
+						${one.tag } | (${one.count })</button>
+				</c:forEach>
+			</div>
+			<div>
+				<form action="${pageContext.servletContext.contextPath }/search">
+					<input name="q" type="text" class="p-2 fs-5 border-rounded" style="width:240px ;height: 30px"/>
+					<button class="badge-warning" style="border: 2px solid lightgray">검색</button>
+				</form>
+			</div>
+
 		</div>
 		<h2 class="my-6">목록: 등록된 체육행사</h2>
 
@@ -52,9 +68,6 @@
 						</div>
 						<hr />
 						<div style="display: flex; justify-content: flex-end; gap: 2px;">
-							<c:if test="${one.joined }">
-								<span class="badge-info">참여중</span>
-							</c:if>
 							<span class="badge-dark">${one.gym.name }</span>
 							<c:choose>
 								<c:when test="${one.dday > 0 }">
