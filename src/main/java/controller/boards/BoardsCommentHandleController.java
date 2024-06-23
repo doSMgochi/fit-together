@@ -1,4 +1,4 @@
-package controller.events;
+package controller.boards;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,25 +13,30 @@ import model.dao.CommentDao;
 import model.vo.Comment;
 import model.vo.User;
 
-@WebServlet("/events/comments")
-public class EventsCommentController extends HttpServlet {
+@WebServlet("/boards/comments")
+public class BoardsCommentHandleController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		if (request.getSession().getAttribute("authUser") == null) {
+			response.sendRedirect(request.getContextPath() + "/boards/"+request.getParameter("boardId"));
+			return;
+		}
 		try {
 			// Comments
 			String comments = request.getParameter("comments");
-			int eventId = Integer.parseInt(request.getParameter("eventId"));
+			int boardId = Integer.parseInt(request.getParameter("boardId"));
 			User authUser = (User) request.getSession().getAttribute("authUser");
-			Comment c = new Comment(0, authUser.getId(), eventId, eventId, comments);
+			Comment c = new Comment(0, authUser.getId(), -1, boardId, comments);
 			CommentDao commentDao = new CommentDao();
-			boolean r = commentDao.eventCommentSave(c);
+			boolean r = commentDao.boardCommentSave(c);
 			if (r) {
 			}
 			List<Comment> comment = new ArrayList<Comment>();
 			comment.add(c);
 			
-			response.sendRedirect(request.getContextPath() + "/events/"+eventId+"?tab=comments");
+			response.sendRedirect(request.getContextPath() + "/boards/"+boardId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

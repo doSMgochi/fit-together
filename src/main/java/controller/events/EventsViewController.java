@@ -63,8 +63,7 @@ public class EventsViewController extends HttpServlet {
 				avgAge += one.getAge() * one.getAgeCount();
 				if (one.getGender().equals("남")) {
 					male++;
-				}
-				else if (one.getGender().equals("여")) {
+				} else if (one.getGender().equals("여")) {
 					female++;
 				}
 			}
@@ -72,20 +71,20 @@ public class EventsViewController extends HttpServlet {
 			request.setAttribute("avgAge", avgAge);
 			request.setAttribute("male", male);
 			request.setAttribute("female", female);
-			
+
 			request.setAttribute("statistics", statistics);
-			
+
 			request.setAttribute("already", already);
 			String tab = request.getParameter("tab");
 			if (tab == null) {
 				request.getRequestDispatcher("/WEB-INF/view/events/view-default.jsp").forward(request, response);
 			} else if (tab.equals("comments")) {
 				CommentDao commentDao = new CommentDao();
-				List<Comment> printComment = commentDao.findAll(event.getId());
+				List<Comment> printComment = commentDao.eventCommentfindAll(event.getId());
 				int commentCount = printComment.size();
 				request.setAttribute("commentCount", commentCount);
 				request.setAttribute("printComment", printComment);
-				
+
 				request.getRequestDispatcher("/WEB-INF/view/events/view-comments.jsp").forward(request, response);
 
 			}

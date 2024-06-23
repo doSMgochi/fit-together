@@ -4,17 +4,19 @@ public class Comment {
 	int id;
 	String userId;
 	int eventId;
+	int boardId;
 	String body;
 
 	public Comment() {
 		super();
 	}
 
-	public Comment(int id, String userId, int eventId, String body) {
+	public Comment(int id, String userId, int eventId, int boardId, String body) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.eventId = eventId;
+		this.boardId = boardId;
 		this.body = body;
 	}
 
@@ -40,6 +42,14 @@ public class Comment {
 
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
+	}
+
+	public int getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 
 	public String getBody() {

@@ -157,7 +157,6 @@ public class BoardDao {
 		ods.setUser("fit_together");
 		ods.setPassword("oracle");
 		try (Connection conn = ods.getConnection()) {
-			// 식별키로 조회하고,
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Boards WHERE id=?");
 			stmt.setInt(1, id);
 

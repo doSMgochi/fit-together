@@ -78,11 +78,11 @@
 			</div>
 		</div>
 
-
+		
 		<hr class="hr-1" />
 		</div>
 		<!-- 아마 gap? 을 이용해서 처리할 수 있을 것 같은데 반응형으로 위치가 달라질 수 있게 변경 -->
-		<div class="wrap-sm text-center my-5 p-5" style="position: absolute; bottom: -55% ; width: 100% ;">
+		<div class="wrap-sm text-center my-5 p-5" style="position: absolute; bottom: -150% ; width: 100% ; height: auto">
 		<a style="cursor: default;"
 			href="${pageContext.servletContext.contextPath }/index"> <img
 			src="${pageContext.servletContext.contextPath }/image/footer.jpg"
